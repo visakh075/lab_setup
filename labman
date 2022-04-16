@@ -1,0 +1,16 @@
+#!/bin/bash
+# get results from libman.py
+# the lib files in the sub-directories
+mkdir lab_libs
+cp -v lab_scripts/Makefile_lab_libs lab_libs/Makefile
+echo "pulling libraries"
+list=$(./lab_scripts/libman.py)
+for element in $list
+do
+  #echo $element
+  cp -v $element lab_libs/
+done
+cd lab_libs
+echo "building libraries"
+make all
+exit 0

@@ -1,0 +1,18 @@
+CC := clang
+CC_CPP:= clang++
+CPP_SRC = $(wildcard *.cpp)
+CPP_OBJ = $(patsubst %.cpp,%.o,$(CPP_SRC))
+C_SRC = $(wildcard *.c)
+C_OBJ = $(patsubst %.c,%.o,$(C_SRC))
+
+all : cpp_lib c_lib
+	@ echo $(C_OBJ)
+	@ echo $(CPP_OBJ)
+cpp_lib : $(CPP_OBJ)
+c_lib	: $(C_OBJ)
+clean :
+	rm *.o
+%.o : %.cpp
+	@$(CC_CPP) $(FLG) -c $< -o $@
+%.o : %.c
+	@$(CC) $(FLG) -c $< -o $@
